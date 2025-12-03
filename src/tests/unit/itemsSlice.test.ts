@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, EnhancedStore } from '@reduxjs/toolkit';
 
 import itemsReducer, {
   fetchItems,
@@ -11,8 +11,10 @@ import itemsReducer, {
 } from '../../features/items/itemsSlice';
 import type { ItemsState, Item } from '../../types';
 
+type TestRootState = { items: ItemsState };
+
 describe('itemsSlice', () => {
-  let store: ReturnType<typeof configureStore>;
+  let store: EnhancedStore<TestRootState>;
 
   beforeEach(() => {
     store = configureStore({

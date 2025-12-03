@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, EnhancedStore } from '@reduxjs/toolkit';
 
 import authReducer, {
   login,
@@ -9,8 +9,10 @@ import authReducer, {
 } from '../../features/auth/authSlice';
 import type { AuthState } from '../../types';
 
+type TestRootState = { auth: AuthState };
+
 describe('authSlice', () => {
-  let store: ReturnType<typeof configureStore>;
+  let store: EnhancedStore<TestRootState>;
 
   beforeEach(() => {
     store = configureStore({
